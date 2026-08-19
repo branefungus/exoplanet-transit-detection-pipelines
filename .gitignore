@@ -35,3 +35,9 @@ results/figures/
 .vscode/
 .DS_Store
 *.swp
+
+# Provenance / data-availability files (small, keep in repo)
+!data/raw/tic_list.csv
+!data/raw/toi_sample.csv
+!data/raw/stars/download_manifest.csv
+!results/tables/mast_links.csv
