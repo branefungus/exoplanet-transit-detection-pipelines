@@ -130,8 +130,7 @@ are statistically independent of the real trials.
 ## Citation
 
 If you use this code, please cite the paper: "Comparing Exoplanet Transit
-Detection Pipelines Under Realistic Noise and Data Gaps." (Add full author list,
-venue, and year here.)
+Detection Pipelines Under Realistic Noise and Data Gaps." (paper still pending)
 
 ## License
 
