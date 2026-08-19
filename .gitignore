@@ -1,0 +1,37 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.eggs/
+build/
+dist/
+.venv/
+venv/
+env/
+.python-version
+
+# Generated data and results (large; reproduce with the scripts)
+data/raw/stars/*.csv
+data/raw/tic_list.csv
+data/raw/toi_sample.csv
+data/trials/
+data/trials_null/
+results/tables/*.csv
+results/tables/*.txt
+results/figures/
+
+# Keep the empty directory structure
+!data/raw/stars/.gitkeep
+!data/trials/.gitkeep
+!data/trials_null/.gitkeep
+!results/tables/.gitkeep
+!results/figures/.gitkeep
+
+# Backups written by regrade_depth_window.py
+*.csv.bak
+
+# Editor / OS cruft
+.idea/
+.vscode/
+.DS_Store
+*.swp

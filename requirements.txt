@@ -1,0 +1,18 @@
+# Core numerics and data handling
+numpy>=1.24
+pandas>=2.0
+scipy>=1.10
+
+# Astronomy: BLS search, TESS light curve access
+astropy>=5.3
+lightkurve>=2.4
+
+# Pipeline P3 (celerite2 Gaussian-process detrend) and P2 (wavelet denoise)
+celerite2>=0.2
+PyWavelets>=1.4
+
+# Plotting (diagnostics and explanatory figures)
+matplotlib>=3.7
+
+# Star-sample TAP query (script 00)
+requests>=2.28
