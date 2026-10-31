@@ -1,11 +1,6 @@
-"""Download one TESS light curve per TIC (SPOC 2-min preferred), save each as a
-time/flux CSV, and write a manifest.
+# Download one TESS light curve per TIC (SPOC 2-min preferred), save each as a time/flux CSV, and write a manifest.
+# Includes retry/backoff on transient network errors. On PDCSAP: in current lightkurve a downloaded SPOC LightCurve doesn't expose a pdcsap_flux attribute (the FLUX column of a SPOC product already is PDCSAP), so we check the column set explicitly and record which flux column was used in the manifest.
 
-Includes retry/backoff on transient network errors. On PDCSAP: in current
-lightkurve a downloaded SPOC LightCurve doesn't expose a pdcsap_flux attribute
-(the FLUX column of a SPOC product already is PDCSAP), so we check the column set
-explicitly and record which flux column was used in the manifest.
-"""
 from __future__ import annotations
 
 from pathlib import Path
@@ -37,7 +32,7 @@ PAUSE_BETWEEN_TICS_SEC = 1.0
 
 
 def _to_seconds(exptime):
-    """Coerce an exposure time (Quantity, number, or None) to seconds as a float."""
+    #Coerce an exposure time (Quantity, number, or None) to seconds as a float.#
     if exptime is None:
         return np.nan
     if hasattr(exptime, "to_value"):
@@ -66,8 +61,7 @@ def _row_npts(row) -> int:
 
 
 def score_search_row(row):
-    """Sort key for product preference: prefer PREFER_AUTHOR, then exposure time
-    nearest PREFER_EXPTIME_SECONDS, then more points. Lower sorts better."""
+    #Sort key for product preference: prefer PREFER_AUTHOR, then exposure time nearest PREFER_EXPTIME_SECONDS, then more points. Lower sorts better.
     author = str(getattr(row, "author", "") or "")
     exptime_sec = _to_seconds(getattr(row, "exptime", None))
     author_penalty = 0 if author.upper() == C.PREFER_AUTHOR else 1
@@ -76,8 +70,7 @@ def score_search_row(row):
 
 
 def pick_best_product(search_result):
-    """Best product by score, restricted to those with at least MIN_POINTS points
-    when any qualify; otherwise the best-scoring row overall."""
+    #Best product by score, restricted to those with at least MIN_POINTS points when any qualify; otherwise the best-scoring row overall.
     if len(search_result) == 0:
         return None
     rows = sorted(list(search_result), key=score_search_row)
@@ -88,7 +81,7 @@ def pick_best_product(search_result):
 
 
 def _is_transient(e: Exception) -> bool:
-    """Whether an exception looks like a transient network hiccup worth retrying."""
+    #Whether an exception looks like a transient network hiccup worth retrying.#
     if isinstance(e, http.client.RemoteDisconnected):
         return True
     msg = str(e).lower()
@@ -105,8 +98,8 @@ def _retry_sleep(attempt: int):
 
 
 def extract_time_flux(lc) -> tuple[np.ndarray, np.ndarray, str]:
-    """Pull (time, flux, flux_column_name) out of a LightCurve. Prefer an explicit
-    pdcsap_flux column; for SPOC products the default flux column already is PDCSAP."""
+    #Pull (time, flux, flux_column_name) out of a LightCurve. Prefer an explicit
+    pdcsap_flux column; for SPOC products the default flux column already is PDCSAP.#
     cols = set(getattr(lc, "colnames", []) or [])
     if "pdcsap_flux" in cols:
         flux = np.asarray(lc["pdcsap_flux"].value, dtype=float)
