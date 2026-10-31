@@ -21,7 +21,7 @@ TAP_SYNC = "https://exoplanetarchive.ipac.caltech.edu/TAP/sync"
 
 
 def fetch_toi_table() -> pd.DataFrame:
-    """Run the TAP query and return the TOI table as a DataFrame."""
+    #Run the TAP query and return the TOI table as a DataFrame.
     disp_list = ",".join(f"'{d}'" for d in C.DISPOSITIONS)
     where = [f"tfopwg_disp in ({disp_list})", "tid is not null"]
     if C.MAX_TMAG is not None:
