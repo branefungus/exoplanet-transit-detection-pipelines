@@ -1,11 +1,10 @@
-"""Build the star sample: the N brightest TICs that host a confirmed or known
-planet TOI.
+#Build the star sample: the N brightest TICs that host a confirmed or known planet TOI.
 
-Queries the NASA Exoplanet Archive TOI table over TAP, filters to the requested
-dispositions (and optional magnitude cut), keeps one row per TIC, and writes the
-sample to data/raw/. Selection follows config.py: brightest-N by default, or a
-fixed-seed random sample if RANDOM_SAMPLE is set.
-"""
+# Queries the NASA Exoplanet Archive TOI table over TAP, filters to the requested
+# dispositions (and optional magnitude cut), keeps one row per TIC, and writes the
+# sample to data/raw/. Selection follows config.py: brightest-N by default, or a
+# fixed-seed random sample if RANDOM_SAMPLE is set.
+
 from __future__ import annotations
 
 from io import StringIO
